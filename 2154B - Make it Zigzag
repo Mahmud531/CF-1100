@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t; 
+    if (!(cin >> t)) return 0;
+    while (t--) {
+        int n; 
+        cin >> n;
+        vector<ll> a(n);
+        for (int i = 0; i < n; ++i) cin >> a[i];
+
+
+        vector<ll> preMax(n);
+        ll cur = LLONG_MIN;
+        for (int i = 0; i < n; ++i) {
+            cur = max(cur, a[i]);
+            preMax[i] = cur;
+        }
+
+       
+        vector<ll> b = a;
+        for (int i = 0; i < n; ++i) {
+            if (((i + 1) % 2) == 0) {
+                b[i] = preMax[i];
+            }
+        }
+
+        ll ans = 0;
+        for (int i = 0; i < n; ++i) {
+            if (((i + 1) % 2) == 1) {
+                 ll mn = LLONG_MAX;
+                if (i - 1 >= 0) mn = min(mn, b[i - 1]);
+                if (i + 1 < n)  mn = min(mn, b[i + 1]);
+                ll target = mn - 1;
+                if (b[i] > target) ans += (b[i] - target);
+            }
+        }
+
+        cout << ans << '\n';
+    }
+    return 0;
+}
