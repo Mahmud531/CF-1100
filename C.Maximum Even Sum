@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+
+int main(){
+    ios::sync_with_stdio(0);cin.tie(0);
+    
+    int t;cin>>t;
+    while(t--){
+        ll a,b;cin>>a>>b;
+
+        //a == even , b == odd impossible
+        if((a%2 == 0)&&(b%2==1)){
+            cout<<-1<<'\n';
+            continue;
+        }
+
+        // both odd
+        if((a%2==1)&&(b%2==1)){
+            cout<<a*b + 1<<"\n";
+            continue;
+        }
+
+        ll temp = b;
+        int cnt = 0;
+        while(temp%2==0){
+            cnt++;
+            temp/=2;
+        }
+
+        if((a%2==1)&&(cnt==1)){
+            cout<<-1<<"\n";
+            continue;
+        }
+
+        ll ans = a*(b/2) + 2;
+        cout<<ans<<'\n';
+    }
+    return 0;
+}
