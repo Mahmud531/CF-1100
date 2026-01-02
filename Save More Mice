@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+void solve(){
+    ll n,k;
+    cin>>n>>k;
+    vector<ll>mice(k);
+
+    for(int i = 0;i<k;i++){
+        cin>>mice[i];
+    }
+
+   // sort(mice.begin(),mice.end(),greater<int>());
+    sort(mice.rbegin(),mice.rend());
+    ll cat_pos = 0;
+    int cnt = 0;
+
+    for(int i = 0;i<k;i++){
+        if(mice[i]>cat_pos){
+            cnt++;
+            cat_pos += (n-mice[i]);
+        }
+        else{
+            break;
+        }
+    }
+    cout<<cnt<<'\n';
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
+    }
+    return 0;
+} 
